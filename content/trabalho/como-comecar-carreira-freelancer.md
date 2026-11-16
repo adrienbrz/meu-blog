@@ -5,9 +5,6 @@ draft: false
 description: "Descubra como iniciar uma carreira freelancer, desenvolver suas habilidades, montar um portfólio e conquistar seus primeiros clientes."
 categories: ["Trabalho"]
 ---
-
-# Como você pode começar uma carreira de trabalho freelancer
-
 Atualmente, começar uma carreira como freelancer tem se tornado uma excelente forma de construir uma trajetória profissional de sucesso ou simplesmente conquistar uma renda extra para complementar o orçamento mensal.
 
 Seja trabalhando em casa ou em espaços de coworking, o trabalho freelancer cresceu no Brasil e no mundo, tornando-se uma modalidade cada vez mais popular. Essa forma de trabalho representa uma tendência importante para o desenvolvimento do mercado profissional atual e dos próximos anos.
