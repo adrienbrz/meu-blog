@@ -1,0 +1,28 @@
+# IMPORTANTE: substitua o domínio abaixo pelo endereço real antes de publicar.
+baseURL = "https://seudominio.com/"
+languageCode = "pt-br"
+title = "Meu Blog"
+enableRobotsTXT = true
+
+[params]
+  description = "Conteúdos sobre negócios, tecnologia, trabalho e educação."
+  author = "Redação Meu Blog"
+  defaultImage = "/images/hero.jpg"
+  # Configure quando tiver um endereço oficial:
+  contactEmail = ""
+  # Cole aqui a URL de integração do seu serviço de newsletter (ex.: formulário do provedor).
+  newsletterAction = ""
+
+[permalinks]
+  negocios = "/negocios/:slug/"
+  tecnologia = "/tecnologia/:slug/"
+  trabalho = "/trabalho/:slug/"
+  educacao = "/educacao/:slug/"
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[markup.goldmark]
+  [markup.goldmark.renderer]
+    unsafe = false
