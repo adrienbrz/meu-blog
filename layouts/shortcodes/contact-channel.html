@@ -1,0 +1,5 @@
+{{ with site.Params.contactEmail }}
+<p>Escreva para: <a href="mailto:{{ . }}">{{ . }}</a></p>
+{{ else }}
+<p>O endereço de e-mail de contato ainda não foi configurado.</p>
+{{ end }}

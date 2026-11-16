@@ -1,0 +1,14 @@
+<section class="newsletter" aria-labelledby="newsletter-title">
+  <span class="section-label">FIQUE POR DENTRO</span>
+  <h2 id="newsletter-title">Boas ideias merecem ser compartilhadas.</h2>
+  <p>Acompanhe nossas publicações e descubra novas perspectivas.</p>
+  {{ with site.Params.newsletterAction }}
+    <form class="newsletter-form" action="{{ . }}" method="post">
+      <label class="visually-hidden" for="newsletter-email">Seu e-mail</label>
+      <input id="newsletter-email" type="email" name="email" placeholder="Seu melhor e-mail" autocomplete="email" required>
+      <button class="button" type="submit">Quero receber</button>
+    </form>
+  {{ else }}
+    <p class="integration-note">Inscrições por e-mail em breve. A integração será ativada quando o serviço de newsletter for configurado.</p>
+  {{ end }}
+</section>

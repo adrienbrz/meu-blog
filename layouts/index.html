@@ -1,0 +1,72 @@
+
+{{ define "main" }}
+
+<section class="hero">
+  <div class="hero-content">
+
+    <span class="eyebrow">
+      IDEIAS QUE TRANSFORMAM O FUTURO
+    </span>
+
+    <h1>
+      Conhecimento para crescer, inovar e transformar.
+    </h1>
+
+    <p>
+      Um espaço dedicado a ideias, tendências e conhecimentos
+      sobre negócios, tecnologia, trabalho e educação.
+    </p>
+
+    <a href="#artigos" class="button">
+      Explorar artigos →
+    </a>
+
+  </div>
+
+  <div class="hero-image">
+    <img
+      src="/images/hero.jpg"
+      alt="Ambiente moderno de trabalho"
+      fetchpriority="high">
+  </div>
+</section>
+
+<section class="categories-section">
+  <span class="section-label">EXPLORE POR ASSUNTO</span>
+
+  <div class="category-links">
+    <a href="{{ "negocios/" | relURL }}">Negócios ↗</a>
+    <a href="{{ "tecnologia/" | relURL }}">Tecnologia ↗</a>
+    <a href="{{ "trabalho/" | relURL }}">Trabalho ↗</a>
+    <a href="{{ "educacao/" | relURL }}">Educação ↗</a>
+  </div>
+</section>
+
+<section class="articles-section" id="artigos">
+
+  <div class="section-heading">
+    <div>
+      <span class="section-label">NOSSO CONTEÚDO</span>
+      <h2>Últimas publicações</h2>
+    </div>
+  </div>
+
+<div class="articles-grid">
+
+    {{ range first 9 (where site.RegularPages "Section" "in" (slice "negocios" "tecnologia" "trabalho" "educacao")) }}
+
+        {{ partial "article-card.html" . }}
+
+    {{ else }}
+
+        <p>Em breve, novas publicações.</p>
+
+    {{ end }}
+
+</div>
+
+</section>
+
+{{ partial "newsletter.html" . }}
+
+{{ end }}

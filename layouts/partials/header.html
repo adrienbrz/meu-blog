@@ -1,0 +1,25 @@
+<header class="header">
+  <div class="header-inner">
+    <a href="{{ site.Home.RelPermalink }}" class="logo">Meu Blog<span>.</span></a>
+    <button class="menu-toggle" id="menuToggle" type="button"
+      aria-label="Abrir menu" aria-expanded="false" aria-controls="navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="navigation" id="navigation" aria-label="Navegação principal">
+      <a href="{{ site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>Início</a>
+      <a href="{{ "negocios/" | relURL }}">Negócios</a>
+      <a href="{{ "tecnologia/" | relURL }}">Tecnologia</a>
+      <a href="{{ "trabalho/" | relURL }}">Trabalho</a>
+      <a href="{{ "educacao/" | relURL }}">Educação</a>
+      <a href="{{ "sobre/" | relURL }}">Sobre</a>
+    </nav>
+    <form class="site-search" id="siteSearch" role="search" autocomplete="off">
+      <label class="visually-hidden" for="searchInput">Buscar artigos</label>
+      <input id="searchInput" type="search" placeholder="Buscar artigos..." aria-label="Buscar artigos" aria-controls="searchResults">
+      <button type="submit" aria-label="Pesquisar">
+        <span aria-hidden="true">⌕</span>
+      </button>
+      <div class="search-results" id="searchResults" role="region" aria-label="Resultados da busca" aria-live="polite" hidden></div>
+    </form>
+  </div>
+</header>

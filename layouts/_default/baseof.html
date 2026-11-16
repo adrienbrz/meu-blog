@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+  {{ partial "seo.html" . }}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  {{ with resources.Get "css/style.css" }}
+    {{ $style := . | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+  {{ end }}
+
+  {{ block "head" . }}{{ end }}
+</head>
+
+<body>
+
+  {{ partial "header.html" . }}
+
+  {{ $searchItems := slice }}
+  {{ range where site.RegularPages "Section" "in" (slice "negocios" "tecnologia" "trabalho" "educacao") }}
+    {{ $searchItems = $searchItems | append (dict
+      "title" .Title
+      "summary" (.Description | default .Summary | plainify)
+      "content" (.Plain | plainify)
+      "section" .Section
+      "url" .RelPermalink
+    ) }}
+  {{ end }}
+  <script id="search-index" type="application/json">{{ $searchItems | jsonify | safeJS }}</script>
+
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  {{ with resources.Get "js/main.js" }}
+    {{ $script := . | minify | fingerprint }}
+    <script src="{{ $script.RelPermalink }}" defer></script>
+  {{ end }}
+
+</body>
+</html>

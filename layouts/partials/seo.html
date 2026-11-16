@@ -1,0 +1,39 @@
+{{- $description := .Description | default site.Params.description -}}
+{{- $image := .Params.image | default site.Params.defaultImage -}}
+{{- $imageURL := $image | absURL -}}
+<meta name="description" content="{{ $description }}">
+<link rel="canonical" href="{{ .Permalink }}">
+
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:type" content="{{ if and .IsPage (in (slice "negocios" "tecnologia" "trabalho" "educacao") .Section) }}article{{ else }}website{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ $imageURL }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ $imageURL }}">
+
+{{- if and .IsPage (in (slice "negocios" "tecnologia" "trabalho" "educacao") .Section) -}}
+<script type="application/ld+json">
+{{ dict
+  "@context" "https://schema.org"
+  "@type" "BlogPosting"
+  "headline" .Title
+  "description" $description
+  "datePublished" (.Date.Format "2006-01-02")
+  "dateModified" (.Lastmod.Format "2006-01-02")
+  "author" (dict "@type" "Organization" "name" ( .Params.author | default site.Params.author ))
+  "mainEntityOfPage" .Permalink
+  "image" $imageURL
+  "publisher" (dict "@type" "Organization" "name" site.Title)
+  | jsonify | safeJS }}
+</script>
+{{- else if .IsHome -}}
+<script type="application/ld+json">
+{{ dict "@context" "https://schema.org" "@type" "WebSite" "name" site.Title "url" site.Home.Permalink "description" $description | jsonify | safeJS }}
+</script>
+{{- end -}}

@@ -1,0 +1,30 @@
+
+{{ define "main" }}
+
+<section class="category-header">
+
+  <span class="section-label">CATEGORIA</span>
+
+  <h1>{{ .Title }}</h1>
+
+  {{ with .Description }}
+    <p>{{ . }}</p>
+  {{ end }}
+
+</section>
+
+<section class="articles-section">
+
+  <div class="articles-grid">
+
+    {{ range .Pages.ByDate.Reverse }}
+      {{ partial "article-card.html" . }}
+    {{ else }}
+      <p>Em breve, novas publicações nesta categoria.</p>
+    {{ end }}
+
+  </div>
+
+</section>
+
+{{ end }}

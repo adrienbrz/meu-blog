@@ -1,0 +1,12 @@
+{{ $image := .Params.image | default site.Params.defaultImage }}
+<article class="article-card">
+  <a href="{{ .RelPermalink }}" class="article-image">
+    <img src="{{ $image | relURL }}" alt="{{ .Title }}" loading="lazy">
+  </a>
+  <a class="article-category" href="{{ .CurrentSection.RelPermalink }}">
+    {{ .CurrentSection.Title }}
+  </a>
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <p>{{ .Description | default .Summary | plainify | truncate 140 }}</p>
+  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
+</article>
