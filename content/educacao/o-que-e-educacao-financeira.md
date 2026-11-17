@@ -5,7 +5,7 @@ date: 2026-11-17
 draft: false
 description: "Entenda o que é educação financeira, como administrar melhor seu dinheiro e por que esse conhecimento é importante para sua vida pessoal e profissional."
 categories: ["Educação"]
-image: "/images/trabalho-freelancer.webp"
+image: "/images/educacao-financeira.webp"
 ---
 
 A educação financeira é um assunto muitas vezes ignorado pelos brasileiros. No entanto, diante da situação econômica em que vivemos, torna-se cada vez mais importante dedicar tempo ao estudo e aprender a aplicar esses conhecimentos em nossa vida cotidiana.
