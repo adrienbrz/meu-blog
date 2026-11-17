@@ -1,5 +1,7 @@
+
 {{ define "main" }}
 <article class="article-container">
+
   {{ if in (slice "negocios" "tecnologia" "trabalho" "educacao") .Section }}
     <nav class="breadcrumb" aria-label="Navegação">
       <a href="{{ site.Home.RelPermalink }}">Início</a>
@@ -20,26 +22,81 @@
     {{ if in (slice "negocios" "tecnologia" "trabalho" "educacao") .Section }}
       <span class="article-category">{{ .CurrentSection.Title }}</span>
     {{ end }}
+
     <h1>{{ .Title }}</h1>
-    {{ with .Description }}<p class="article-subtitle">{{ . }}</p>{{ end }}
-    {{ if in (slice "negocios" "tecnologia" "trabalho" "educacao") .Section }}
-      <div class="article-meta">
-        <span>Por {{ .Params.author | default site.Params.author }}</span>
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
-      </div>
+
+    {{ with .Description }}
+      <p class="article-subtitle">{{ . }}</p>
     {{ end }}
+
+    <div class="article-meta">
+      <span>Por {{ .Params.author | default site.Params.author }}</span>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">
+        {{ .Date | time.Format ":date_long" }}
+      </time>
+      <span>{{ .ReadingTime }} min de leitura</span>
+      <span>{{ .WordCount }} palavras</span>
+    </div>
   </header>
 
   {{ with .Params.image }}
-    <figure class="article-cover"><img src="{{ . | relURL }}" alt="{{ $.Title }}"></figure>
+    <figure class="article-cover">
+      <img src="{{ . | relURL }}" alt="{{ $.Title }}">
+      {{ with $.Params.imageCaption }}
+        <figcaption>{{ . }}</figcaption>
+      {{ end }}
+    </figure>
   {{ end }}
 
-  <div class="article-body">{{ .Content }}</div>
+  {{ if .TableOfContents }}
+    <aside class="article-toc">
+      <h2>Neste artigo</h2>
+      {{ .TableOfContents }}
+    </aside>
+  {{ end }}
+
+  <div class="article-body">
+    {{ .Content }}
+  </div>
+
+  <div class="article-author">
+    <span class="author-label">Sobre o autor</span>
+    <h2>{{ .Params.author | default site.Params.author | default "Equipe editorial" }}</h2>
+    <p>Conteúdos e informações para ajudar você a aprender, explorar ideias e desenvolver novos projetos.</p>
+  </div>
+
+  {{ $related := where site.RegularPages "Section" .Section }}
+  {{ $related = where $related "Permalink" "ne" .Permalink }}
+  {{ $related = first 3 $related }}
+
+  {{ with $related }}
+    <section class="related-articles">
+      <h2>Continue lendo</h2>
+      <div class="related-grid">
+        {{ range . }}
+          <article class="related-card">
+            {{ with .Params.image }}
+              <a href="{{ $.RelPermalink }}">
+                <img src="{{ . | relURL }}" alt="">
+              </a>
+            {{ end }}
+            <span>{{ .CurrentSection.Title }}</span>
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <time>{{ .Date | time.Format ":date_long" }}</time>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
 
   {{ if in (slice "negocios" "tecnologia" "trabalho" "educacao") .Section }}
     <div class="article-back">
-      <a href="{{ .CurrentSection.RelPermalink }}">← Voltar para {{ .CurrentSection.Title }}</a>
+      <a href="{{ .CurrentSection.RelPermalink }}">
+        ← Voltar para {{ .CurrentSection.Title }}
+      </a>
     </div>
   {{ end }}
+
 </article>
 {{ end }}
+
