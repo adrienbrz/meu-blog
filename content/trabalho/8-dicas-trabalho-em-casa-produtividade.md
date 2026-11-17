@@ -4,10 +4,8 @@ date: 2026-11-17
 draft: false
 description: "Descubra 8 dicas práticas para trabalhar em casa, organizar sua rotina, administrar melhor o tempo e aumentar sua produtividade."
 categories: ["Trabalho"]
+image: "/images/dicas-de-trabalho-em-casa.webp"
 ---
-
-# 8 dicas de trabalho em casa que aumentam a sua produtividade
-
 Trabalhar em casa pode ser um desafio, especialmente quando você divide o espaço com a família. Talvez você tenha começado a trabalhar remotamente nos últimos anos ou talvez já seja um profissional freelancer acostumado a trabalhar em casa.
 
 Independentemente da sua situação, o trabalho remoto oferece muitos benefícios, mas também apresenta algumas dificuldades. Quando trabalhamos em casa, podemos acabar nos distraindo durante o dia e deixando de aproveitar nosso tempo da melhor maneira.
